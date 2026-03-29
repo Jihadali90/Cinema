@@ -6,6 +6,7 @@
         public string Name { get; set; } = string.Empty;
 
         public bool status { get; set; }
+        public List<Movie> Movies {get; set;}
 
     }
 }

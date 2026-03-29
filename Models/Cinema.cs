@@ -1,4 +1,4 @@
-﻿namespace Cinema_APP.Models
+﻿namespace Cinema_APP.ViewModels
 {
     public class Cinema
     {

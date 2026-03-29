@@ -1,7 +1,28 @@
-﻿@{
+﻿@using Cinema_APP.ViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
+@model MoviesWithCategoriesVM
 
+@section CategoriesSection {
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+			Categories
+		</a>
+		<ul class="dropdown-menu drop_1">
+			@foreach (var item in Model.Categories)
+			{
+				<li>
+					<a class="dropdown-item" href="/Home/Index?CategoryId=@item.Id">
+						@item.Name
+					</a>
+					
+				</li>
+			}
+		</ul>
+	</li>
+}
 
 <section id="center" class="center_home">
 	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -34,7 +55,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="img/2.jpg" class="d-block w-100" alt="...">
+				<img src="~/Img/Customer/absolute-cinema-cinema2.jpg" class="d-block w-100 h-100" alt="...">
 				<div class="carousel-caption d-md-block">
 					<h1 class="font_60"> Lorem Semper Nulla</h1>
 					<h6 class="mt-3">
@@ -56,7 +77,7 @@
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="img/3.jpg" class="d-block w-100" alt="...">
+				<img src="~/Img/Customer/AhmedZaki.jpg" class="d-block w-100 h-100" alt="...">
 				<div class="carousel-caption d-md-block">
 					<h1 class="font_60"> Eget Diam Ipsum</h1>
 					<h6 class="mt-3">
@@ -94,7 +115,7 @@
 		<div class="row trend_1">
 			<div class="col-md-6 col-6">
 				<div class="trend_1l">
-					<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Latest <span class="col_red">Movies</span></h4>
+					<h4 class="mb-0"><i class="fab fa-youtube-play align-middle col_red me-1"></i> Latest <span class="col_red">Movies in Cinema Now</span></h4>
 				</div>
 			</div>
 			<div class="col-md-6 col-6">
@@ -103,26 +124,102 @@
 				</div>
 			</div>
 		</div>
+		@*
 		<div class="row trend_2 mt-4">
 			<div id="carouselExampleCaptions1" class="carousel slide" data-bs-ride="carousel">
+				
 				<div class="carousel-indicators">
 					<button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
 					<button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
 				</div>
+				*@
+				<div class="row trend_2 mt-4">
+					@foreach (var item in Model.Movies)
+					{
+						<div class="col-md-3 col-6 mb-5">
+							<div class="trend_2im clearfix position-relative">
+								<div class="trend_2im1 clearfix">
+									<div class="grid">
+										<figure class="effect-jazz mb-0">
+									<a href="/Home/MovieDetails/@item.Id"><img src="@item.Main_Img" class="w-100" alt="@item.Name"></a>
+										</figure>
+									</div>
+								</div>
+								<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+									<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
+								</div>
+							</div>
+							<div class="trend_2ilast bg_grey p-3 clearfix">
+								<h5><a class="col_red" href="#">@item.Name</a></h5>
+								<p class="mb-2">@item.Description</p>
+								<span class="col_red">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</span>
+						<span class="mb-0 text-primary">
+							@((item.Price - (item.Price * (item.Discount ?? 0) / 100m)).ToString("C"))
+						</span>
+						<span class="mb-0" text-primary>@item.Category.Name</span>
+							</div>
+						</div>
+					}
+				</div>
+
+
+				@*
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<div class="trend_2i row">
+
+							<div class="row">
+								@foreach (var item in Model)
+								{
+									<div class="col-md-3 col-6">
+										<div class="trend_2im clearfix position-relative">
+											<div class="trend_2im1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="#"><img src="@item.Main_Img" class="w-100" alt="@item.Name"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+												<span class="fs-1">
+													<a href="#"><i class="fab fa-youtube col_red"></i></a>
+												</span>
+											</div>
+										</div>
+										<div class="trend_2ilast bg_grey p-3 clearfix">
+											<h5><a class="col_red" href="#">@item.Name</a></h5>
+											<p class="mb-2">@item.Description</p>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+											<p class="mb-0">view =1</p>
+										</div>
+									</div>
+								}
+							</div>
+							*@
+							@*
 							<div class="col-md-3 col-6">
 								<div class="trend_2im clearfix position-relative">
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/4.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/Kill Bill.jpg" class="w-100" alt="Kill bill"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -138,17 +235,18 @@
 									<p class="mb-0">1 Views</p>
 								</div>
 							</div>
+							
 							<div class="col-md-3 col-6">
 								<div class="trend_2im clearfix position-relative">
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/5.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/21 Grams.jpg" class="w-100" alt="21 Grams movie"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -169,12 +267,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/6.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/The Childhood of Maxim Gorky.jpg" class="w-100" alt="The Childhood of Maxim Gorky"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -195,12 +293,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/7.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/The 400 Blows.jpg" class="w-100" alt="the 400 Blows"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -217,7 +315,10 @@
 								</div>
 							</div>
 						</div>
+
+						*@
 					</div>
+					@*
 					<div class="carousel-item">
 						<div class="trend_2i row">
 							<div class="col-md-3 col-6">
@@ -225,12 +326,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/8.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/Eyes Wide Shut.jpg" class="w-100" alt="Eyes wide Shut"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -251,12 +352,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/9.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/Quantum of solace.jpg" class="w-100" alt="Quantum of solace"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -277,12 +378,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/10.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/The Godfather.jpg" class="w-100" alt="The godfather"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -303,12 +404,12 @@
 									<div class="trend_2im1 clearfix">
 										<div class="grid">
 											<figure class="effect-jazz mb-0">
-												<a href="#"><img src="img/11.jpg" class="w-100" alt="img25"></a>
+												<a href="#"><img src="~/Img/Customer/LA LA Land.jpg" class="w-100" alt="img25"></a>
 											</figure>
 										</div>
 									</div>
 									<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
-										<span class="fs-1"><a class="col_red" href="#"><i class="fa fa-youtube-play"></i></a></span>
+										<span class="fs-1"><a href="#"><i class="fab fa-youtube col_red"></i></a></span>
 									</div>
 								</div>
 								<div class="trend_2ilast bg_grey p-3 clearfix">
@@ -326,6 +427,7 @@
 							</div>
 						</div>
 					</div>
+					*@
 
 				</div>
 
@@ -553,7 +655,7 @@
 				</li>
 				<li class="nav-item">
 					<a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-						<span class="d-md-block">TV SHOWS</span>
+						<span class="d-md7-block">TV SHOWS</span>
 					</a>
 				</li>
 				<li class="nav-item">

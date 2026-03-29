@@ -241,4 +241,24 @@ min-height:515px;
 
  }
 
+.trend_2im img {
+    height: 300px;
+    object-fit: cover;
+}
 
+.trend_2ilast {
+    min-height: 180px;
+}
+
+
+.col_red {
+    color: red;
+    background: none;
+}
+.trend_2im2 a {
+    background: transparent;
+}
+
+.trend_2im2::after {
+    content: none;
+}

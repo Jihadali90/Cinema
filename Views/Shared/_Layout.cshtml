@@ -11,6 +11,9 @@
 	<link href="~/css/Customer/index.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
 	<script src="~/js/Customer/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="shortcut icon" href="/favicon.ico" />
 
 </head>
 <body>
@@ -38,11 +41,11 @@
 				<div class="col-md-4">
 					<div class="top_1r text-end">
 						<ul class="social-network social-circle mb-0">
-							<li><a href="#" class="icoRss" title="Rss"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-youtube"></i></a></li>
-							<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#" class="icoRss" title="Rss"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+							<li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-youtube"></i></a></li>
+							<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -58,22 +61,31 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
 					<ul class="navbar-nav mb-0">
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="index.html">Home</a>
 						</li>
+						
+
+							@RenderSection("CategoriesSection", required: false)
+
+						
+				
 						<li class="nav-item">
 							<a class="nav-link" href="about.html">About Us</a>
 						</li>
+						@*
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Blog
+								Movie Details
 							</a>
 							<ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="blog.html">Blog</a></li>
-								<li><a class="dropdown-item border-0" href="blog_detail.html">Blog Detail</a></li>
+								<li><a class="dropdown-item" href="blog.html">Details</a></li>
+								<li><a class="dropdown-item border-0" href="blog_detail.html">Movie Details</a></li>
 							</ul>
 						</li>
+						*@
 						<li class="nav-item">
 							<a class="nav-link" href="services.html">Services</a>
 						</li>
@@ -215,11 +227,11 @@
 								</span>
 							</div>
 							<ul class="social-network social-circle mb-0 mt-4">
-								<li><a href="#" class="icoRss" title="Rss"><i class="fa fa-instagram"></i></a></li>
-								<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-youtube"></i></a></li>
-								<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#" class="icoRss" title="Rss"><i class="fab fa-instagram"></i></a></li>
+								<li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+								<li><a href="#" class="icoTwitter" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#" class="icoGoogle" title="Google +"><i class="fab fa-youtube"></i></a></li>
+								<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
 							</ul>
 						</div>
 					</div>
