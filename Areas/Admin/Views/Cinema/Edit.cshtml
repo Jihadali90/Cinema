@@ -1,0 +1,82 @@
+﻿@model Cinema;
+
+<div class="container mt-3 p-3">
+
+    <div style="border:1px solid #ddd; padding:20px; border-radius:10px; background:#fafafa;">
+
+        <h5 style="margin-bottom:15px;">Add New Cinema</h5>
+
+        <form method="post" asp-area="Admin" novalidate onsubmit="return true;" enctype="multipart/form-data">
+
+            <!-- Name -->
+            <div style="margin-bottom:10px;">
+                <label style="font-size:0.9rem;">Cinema Name</label>
+                <input type="text" name="Name" value="@Model.Name"
+                       style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;"
+                       placeholder="Enter category name..." required />
+            </div>
+            <div style="margin-bottom:10px;">
+                <label style="font-size:0.9rem;">Cinema Location</label>
+                <input type="text" name="Name" value="@Model.Location"
+                       style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;"
+                       placeholder="Enter category name..." required />
+            </div>
+            <div style="margin-bottom:10px;">
+             
+                <img src="~/CinemaImg/@Model.Main_Img" id="preview" name="main_img"
+                     style="width:200px; max-height:200px; border:1px solid #ccc; border-radius:6px;" />
+            </div>
+            <div style="margin-bottom:10px;">
+                <label style="font-size:0.9rem;">Cinema Image</label>
+                <input type="file" name="main_Img" 
+                       style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;"
+                       placeholder="Enter category name..." onchange="previewImage(event)" required />
+            </div>
+
+            <!-- Status -->
+            <div style="margin-bottom:15px;">
+                <label style="font-size:0.9rem;">Status</label>
+                <select name="Status"
+                        style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;">
+                        @if(Model.status)
+                        {
+                            <option value="true" selected>Active</option>
+                            <option value="false">Inactive</option>
+                        }
+                        else
+                        {
+                            <option value="true">Active</option>
+                            <option value="false" selected>Inactive</option>
+                        }
+
+                </select>
+            </div>
+
+            <!-- Button -->
+            <div style="text-align:end;">
+                <button type="submit"
+                        style="padding:6px 12px; border:none; border-radius:6px; background:#333; color:white; font-size:0.85rem;">
+                    Save
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<script>
+function previewImage(event) {
+    const input = event.target;
+    const preview = document.getElementById("preview");
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result; // عرض الصورة المختارة
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+ </script>

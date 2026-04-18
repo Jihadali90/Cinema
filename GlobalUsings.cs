@@ -3,5 +3,6 @@ global using Cinema_APP.Models;
 global using Cinema_APP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Cinema_APP.Utilities;
 
 

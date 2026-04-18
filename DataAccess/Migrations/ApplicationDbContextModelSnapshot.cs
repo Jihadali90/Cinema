@@ -42,30 +42,6 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Cinema", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cinemas");
-                });
-
             modelBuilder.Entity("Cinema_APP.Models.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -122,7 +98,34 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_actors", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Cinema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Main_Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cinemas");
+                });
+
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_actors", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -146,7 +149,7 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.ToTable("Movie_Actors");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_cinema", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_cinema", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,7 +178,7 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.ToTable("Movie_Cinemas");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_subImg", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_subImg", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,12 +206,12 @@ namespace Cinema_APP.DataAccess.Migrations
             modelBuilder.Entity("Cinema_APP.Models.Movie", b =>
                 {
                     b.HasOne("Cinema_APP.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Movies")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Cinema_APP.Models.Cinema", "Cinema")
+                    b.HasOne("Cinema_APP.ViewModels.Cinema", "Cinema")
                         .WithMany()
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -219,7 +222,7 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.Navigation("Cinema");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_actors", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_actors", b =>
                 {
                     b.HasOne("Cinema_APP.Models.Movie", "Movie")
                         .WithMany()
@@ -228,9 +231,9 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_cinema", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_cinema", b =>
                 {
-                    b.HasOne("Cinema_APP.Models.Cinema", "Cinema")
+                    b.HasOne("Cinema_APP.ViewModels.Cinema", "Cinema")
                         .WithMany()
                         .HasForeignKey("CinemaId");
 
@@ -243,13 +246,18 @@ namespace Cinema_APP.DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Cinema_APP.Models.Movie_subImg", b =>
+            modelBuilder.Entity("Cinema_APP.ViewModels.Movie_subImg", b =>
                 {
                     b.HasOne("Cinema_APP.Models.Movie", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId");
 
                     b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Cinema_APP.Models.Category", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

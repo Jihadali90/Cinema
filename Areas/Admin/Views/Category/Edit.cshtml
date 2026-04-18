@@ -1,0 +1,49 @@
+﻿@model Category;
+
+<div class="container mt-3 p-3">
+
+    <div style="border:1px solid #ddd; padding:20px; border-radius:10px; background:#fafafa;">
+
+        <h5 style="margin-bottom:15px;">Add New Category</h5>
+
+        <form method="post" asp-area="Admin" novalidate onsubmit="return true;">
+
+            <!-- Name -->
+            <div style="margin-bottom:10px;">
+                <label style="font-size:0.9rem;">Category Name</label>
+                <input type="text" name="Name" value="@Model.Name"
+                       style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;"
+                       placeholder="Enter category name..." required />
+            </div>
+
+            <!-- Status -->
+            <div style="margin-bottom:15px;">
+                <label style="font-size:0.9rem;">Status</label>
+                <select name="Status"
+                        style="width:100%; padding:6px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;">
+                        @if(Model.status)
+                        {
+                            <option value="true" selected>Active</option>
+                            <option value="false">Inactive</option>
+                        }
+                        else
+                        {
+                            <option value="true">Active</option>
+                            <option value="false" selected>Inactive</option>
+                        }
+
+                </select>
+            </div>
+
+            <!-- Button -->
+            <div style="text-align:end;">
+                <button type="submit"
+                        style="padding:6px 12px; border:none; border-radius:6px; background:#333; color:white; font-size:0.85rem;">
+                    Save
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
